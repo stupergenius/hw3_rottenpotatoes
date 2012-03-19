@@ -10,7 +10,13 @@ end
 #   on the same page
 
 Then /I should see "(.*)" before "(.*)"/ do |e1, e2|
-  assert page.body.index(e1) < page.body.index(e2)
+  e1_index = page.body.index(e1)
+  assert e1_index != nil, "'#{e1}' not found in page body"
+  
+  e2_index = page.body.index(e2)
+  assert e2_index != nil, "'#{e2}' not found in page body"
+  
+  assert e1_index < e2_index, "'#{e2}' displayed before '#{e1}' in page body"
 end
 
 # Make it easier to express checking or unchecking several boxes at once
