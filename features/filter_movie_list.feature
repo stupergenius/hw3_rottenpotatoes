@@ -41,7 +41,24 @@ Scenario: restrict to movies with 'PG' or 'R' ratings
   | Chicken Run             |
 
 Scenario: no ratings selected
-  # see assignment
+  When I uncheck the following ratings: PG, R, PG-13, G
+  And I press "Refresh"
+  Then I should see all of the movies:
+  | title                   |
 
 Scenario: all ratings selected
-  # see assignment
+  When I check the following ratings: PG, R, PG-13, G
+  And I press "Refresh"
+  Then I should see all of the movies:
+  | title                   |
+  | The Terminator          |
+  | When Harry Met Sally    |
+  | Amelie                  |
+  | The Incredibles         |
+  | Raiders of the Lost Ark |
+  | Aladdin                 |
+  | The Help                |
+  | Chocolat                |
+  | 2001: A Space Odyssey   |
+  | Chicken Run             |
+
