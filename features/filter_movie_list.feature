@@ -25,10 +25,20 @@ Scenario: restrict to movies with 'PG' or 'R' ratings
   When I check the following ratings: PG, R
   And I uncheck the following ratings: G, PG-13
   And I press "Refresh"
-  Then I should see "The Terminator"
-  And I should see "The Incredibles"
-  And I should not see "Aladdin"
-  And I should not see "The Help"
+  Then I should see all of the movies:
+  | title                   |
+  | The Terminator          |
+  | When Harry Met Sally    |
+  | Amelie                  |
+  | The Incredibles         |
+  | Raiders of the Lost Ark |
+  And I should not see all of the movies:
+  | title                   |
+  | Aladdin                 |
+  | The Help                |
+  | Chocolat                |
+  | 2001: A Space Odyssey   |
+  | Chicken Run             |
 
 Scenario: no ratings selected
   # see assignment

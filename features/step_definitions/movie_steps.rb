@@ -27,3 +27,12 @@ When /I (un)?check the following ratings: (.*)/ do |uncheck, rating_list|
     }
   end
 end
+
+Then /I should (not )?see all of the movies/ do |should_not, movies_table|
+  movies_table.hashes.each do |movie|
+    movie_title = movie['title']
+    steps %{
+      Then I should #{should_not}see "#{movie_title}"
+    }
+  end
+end
